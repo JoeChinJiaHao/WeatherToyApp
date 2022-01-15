@@ -9,7 +9,7 @@ public class Constants {
     public static final Logger logger = Logger.getLogger(Constants.class.getName());
     public final static String APIKey = System.getenv("MyWeatherAPIKey") ; 
     public static final String BaseURL="https://api.openweathermap.org/data/2.5/weather";
-    
+    public static final String Bean_Cache_SVC="Weather_Cache";
     public String getQueryURL(String q, String appid){
         String URL=BaseURL;
 

@@ -15,56 +15,111 @@
         </div>
         <div class="justify-content-center form-group">
             <form action="/weather" method="post">
-                <div class="row">
-                    <div class="row mt-3 mb-3">
-                        <div class="col">
-                            <label for="cityName" class="d-flex col-form-label justify-content-end">City Name:</label>
-                        </div>
-                        <div class="col">
-                            <input class = " form-control" type="text" name="cityName" id="cityName" placeholder="Enter city Name here" required>
-                        </div>
-                        <div class="col">
-                            <label for="stateCode" class="col-form-label d-flex justify-content-end">State Code:</label>
-                        </div>
-                        <div class="col">
-                            <input class = " form-control" type="text" name="stateCode" id="stateCode" placeholder="(Optional)Enter State Code here" >
-                        </div>
+                <div class="row ">
+                    <div class="row mt-3 mb-3 d-flex ">
+                         
+                        <div class="row">
+                            <div class="col"></div>
+                            
+                            <div class=" col-8 card border-danger">
+                                <div class="row mt-2 mb-2">
+                                    <div class="card-header text-danger">*Required</div>
+                                    <div class="card-body row">
+                                        <div class="col d-flex justify-content-end">
+                                            <label for="cityName" class="col-form-label d-flex">City Name:</label>
+                                        </div>
+                                        <div class="col-10 d-flex">
+                                            <input class = " form-control" type="text" name="cityName" id="cityName" placeholder="Enter city Name here" required>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>    
+                            
+                            <div class="col"></div>
+                        </div>    
+                        
+                       
+                    </div>
+                    <div class="row mb-3 mt-3 d-flex">
+                            <div class="col "></div>
+                            <div class="card border-muted col-8 d-flex">
+                                <div class="card-header text-muted d-flex">*Optional</div>
+                                <div class="card-body">
+                                    <div class="row mb-3 mt-3">
+                                        <div class="row ">
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="col"></div>
+                                                    <div class=" col d-flex justify-content-end">
+                                                        <label for="stateCode" class="col-form-label d-flex justify-content-end">State Code:</label>
+                                                    </div>
+                                                    <div class="d-flex col-8">
+                                                        <input class = " form-control" type="text" name="stateCode" id="stateCode" placeholder="(Optional)Enter State Code here" >
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>    
+                                            <div class="col">
+                                                <div class="row">
+                                                    
+                                                    <div class="col d-flex justify-content-end">
+                                                        <label for="countryCode" class="col-form-label d-flex justify-content-end">Country Code:</label>
+                                                    </div>
+                                                    <div class="col-8 d-flex">
+                                                        <input class = "form-control" type="text" name="countryCode" id="countryCode" placeholder="(Optional)Enter Country Code here" >
+                                                    </div>
+                                                    <div class="col"></div>
+                                                </div>
+                                            </div>   
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row mb-3 mt-3">
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col"></div>
+                                                <div class="col d-flex justify-content-end">
+                                                    <label for="units" class="col-form-label d-flex ">Units:</label>
+                                                </div>
+                                                <div class="col-8 d-flex">
+                                                    <input class = " form-control" type="text" name="units" id="units" placeholder="(Optional)Enter units here" >
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row ">
+                                                <div class="col d-flex justify-content-end">
+                                                    <label for="lang" class="col-form-label d-flex">Language:</label>
+                                                </div>
+                                                <div class="col-8 d-flex">
+                                                    <input class = " form-control" type="text" name="lang" id="lang" placeholder="(Optional)Enter Language here" >
+                                                </div>
+                                                <div class="col"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="col"></div>
                         
                     </div>
-                    <div class="row mb-3 mt-3">
-                        <div class="col">
-                            <label for="countryCode" class="col-form-label d-flex justify-content-end">Country Code:</label>
-                        </div>
-                        <div class="col">
-                            <input class = " form-control" type="text" name="countryCode" id="countryCode" placeholder="(Optional)Enter Country Code here" >
-                        </div>
-                        <div class="col">
-                            <label for="lang" class="col-form-label d-flex justify-content-end">Language:</label>
-                        </div>
-                        <div class="col">
-                            <input class = " form-control" type="text" name="lang" id="lang" placeholder="(Optional)Enter Language here" >
-                        </div>
+                <div class="row">
+                    <div class="col d-flex"></div>
+                 
+                    <div class="col-8 d-flex justify-content-center">
+                        <p>Disclaimer: Visit <a href="https://openweathermap.org/current"> openweather.org </a> for more infomation on optional field entry format</p>
                     </div>
-                    <div class="row mb-3 mt-3">
-                        <div class="col">
-                            <label for="units" class="col-form-label d-flex justify-content-end">Units:</label>
-                        </div>
-                        <div class="col">
-                            <input class = " form-control" type="text" name="units" id="units" placeholder="(Optional)Enter units here" >
-                        </div>
-                        <div class="col">
-                            <p for="lang" class=" d-flex justify-content-end">Disclaimer:</p>
-                        </div>
-                        <div class="col">
-                            <p>Visit <a href="https://openweathermap.org/current"> openweather.org </a> for more infomation on optional field entry format</p>
-                        </div>
-                    </div>
-                    
+                
+                    <div class="col  d-flex"></div>    
                 </div>
                 
-                
                 <div class="row justify-content-center mt-3">
-                    <button type="submit" class="btn-primary btn-lg" >Get Weather</button>
+                    <div class="col  d-flex"></div>
+                    <button type="submit" class="btn-primary btn-lg col-8" >Get Weather</button>
+                    <div class="col  d-flex"></div>
                 </div>
                 
             </form>
