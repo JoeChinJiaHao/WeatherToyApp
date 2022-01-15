@@ -21,20 +21,13 @@
                         th:src="@{'http://openweathermap.org/img/wn/{id}@2x.png'(id=${wModel.icon})}" alt="Weather icon">
                         
                     </div>
-                    <div class="flex-shrink-1 card border border-5 border-primary text-white bg-primary">
-                        <ul class="list-group list-group-flush bg-primary d-flex h-100 justify-content-center">
-                            <li class="list-group-item bg-primary text-white " data-th-text="'Temperature ('+${wModel.units}+')'"> </li>
-                            
-                            <li class="list-group-item bg-primary text-white">main: </li>
-                            <li class="list-group-item bg-primary text-white">Description: </li>
-                        </ul>
-                    </div>
+                    
                     <div class="border border-3 border-primary card d-flex flex-grow-1 bg-primary">
                         <ul class="list-group list-group-flush d-flex h-100 w-100 justify-content-center">
-                            <li class="list-group-item list-group-item-action bg-primary text-white" data-th-text="${wModel.temp}"></li>
+                            <li class="list-group-item list-group-item-action bg-primary text-white" data-th-text="'Temperature ('+${wModel.units}+')   : '+${wModel.temp}"></li>
                             
-                            <li class="list-group-item list-group-item-action bg-primary text-white" data-th-text="${wModel.main}"></li>
-                            <li class="list-group-item list-group-item-action bg-primary text-white" data-th-text="${wModel.getDes}"></li>
+                            <li class="list-group-item list-group-item-action bg-primary text-white" data-th-text="'main        : '+${wModel.main}"></li>
+                            <li class="list-group-item list-group-item-action bg-primary text-white" data-th-text="'Description : '+${wModel.getDes}"></li>
                         </ul>
                     </div>
                     
