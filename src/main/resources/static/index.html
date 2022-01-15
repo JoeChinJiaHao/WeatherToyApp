@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <h1 >Enter the city name below</h1>
+        </div>
+        <div class="justify-content-center form-group">
+            <form action="/weather" method="post">
+                <div class="row">
+                    <div class="row mt-3 mb-3">
+                        <div class="col">
+                            <label for="cityName" class="d-flex col-form-label justify-content-end">City Name:</label>
+                        </div>
+                        <div class="col">
+                            <input class = " form-control" type="text" name="cityName" id="cityName" placeholder="Enter city Name here" required>
+                        </div>
+                        <div class="col">
+                            <label for="stateCode" class="col-form-label d-flex justify-content-end">State Code:</label>
+                        </div>
+                        <div class="col">
+                            <input class = " form-control" type="text" name="stateCode" id="stateCode" placeholder="(Optional)Enter State Code here" >
+                        </div>
+                        
+                    </div>
+                    <div class="row mb-3 mt-3">
+                        <div class="col">
+                            <label for="countryCode" class="col-form-label d-flex justify-content-end">Country Code:</label>
+                        </div>
+                        <div class="col">
+                            <input class = " form-control" type="text" name="countryCode" id="countryCode" placeholder="(Optional)Enter Country Code here" >
+                        </div>
+                        <div class="col">
+                            <label for="lang" class="col-form-label d-flex justify-content-end">Language:</label>
+                        </div>
+                        <div class="col">
+                            <input class = " form-control" type="text" name="lang" id="lang" placeholder="(Optional)Enter Language here" >
+                        </div>
+                    </div>
+                    <div class="row mb-3 mt-3">
+                        <div class="col">
+                            <label for="units" class="col-form-label d-flex justify-content-end">Units:</label>
+                        </div>
+                        <div class="col">
+                            <input class = " form-control" type="text" name="units" id="units" placeholder="(Optional)Enter units here" >
+                        </div>
+                        <div class="col">
+                            <p for="lang" class=" d-flex justify-content-end">Disclaimer:</p>
+                        </div>
+                        <div class="col">
+                            <p>Visit <a href="https://openweathermap.org/current"> openweather.org </a> for more infomation on optional field entry format</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                
+                <div class="row justify-content-center mt-3">
+                    <button type="submit" class="btn-primary btn-lg" >Get Weather</button>
+                </div>
+                
+            </form>
+        </div>
+        
+    </div>
+</body>
+</html>
