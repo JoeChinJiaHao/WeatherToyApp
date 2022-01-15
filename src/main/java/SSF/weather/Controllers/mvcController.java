@@ -2,22 +2,20 @@ package SSF.weather.Controllers;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.oxm.xstream.CatchAllConverter;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
@@ -26,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
+
 
 import SSF.weather.Constants;
 import SSF.weather.URLBuilderCustom;
@@ -78,7 +76,7 @@ public class mvcController {
                         String Temp = data.getJsonObject("main").get("temp").toString();
                         List<weatherModel> list = new ArrayList<weatherModel>();
                         for(JsonValue j:weatherFromWeb){
-                            list.add(weatherModel.create(j.asJsonObject(), Temp,units));
+                            list.add(weatherModel.create(j.asJsonObject(), Temp,units,weatherM.getName()));
                         }
 
                         logger.log(Level.INFO, "list>>>%s".formatted(list.get(0).getUnits()));
@@ -91,7 +89,6 @@ public class mvcController {
                     }
 
         }catch(RestClientException ex){
-            String p = ex.getMessage();
             String[] errspt =ex.getMessage().toString().split(":",2) ;
             String[] errM = errspt[1].replace("\"","").replace("{", "").replace("}", "").split(",");
             String[] finalErrM=errM[errM.length-1].split(":");

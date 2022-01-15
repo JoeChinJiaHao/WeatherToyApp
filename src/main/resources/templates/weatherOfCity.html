@@ -39,6 +39,12 @@
             <p class="text-end"><a href="/">Go back</a></p>
            
         </div>
+        <div class="row" data-th-if="${!hasKey}">
+            <div class="col">
+                <p>No cahce found, current request will be cached with timestamp</p>
+
+            </div>
+        </div>
     </div>       
     
           
