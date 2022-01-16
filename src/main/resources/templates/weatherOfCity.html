@@ -12,7 +12,11 @@
     <div class="container">
 
         <div class="d-flex justify-content-center">
-             <h1 data-th-text="${cityName}"></h1>
+             <h1 data-th-text="${cityName} "></h1>
+             
+        </div>
+        <div class="d-flex justify-content-center">
+            <h6 data-th-text="'Longitude: '+${Longitude}+', Latitude: '+${Latitude}"></h6>
         </div>
             <div class="d-flex mt-3 mb-3"  th:each="wModel: ${weatherList}" style="height: 175px;">
                   
@@ -28,6 +32,10 @@
                             
                             <li class="list-group-item list-group-item-action bg-primary text-white" data-th-text="'main        : '+${wModel.main}"></li>
                             <li class="list-group-item list-group-item-action bg-primary text-white" data-th-text="'Description : '+${wModel.getDes}"></li>
+                            <!-- <li class="list-group-item list-group-item-action bg-primary text-white" data-th-text="'Longitude : '+${wModel.getLongitude}"></li>
+                            <li class="list-group-item list-group-item-action bg-primary text-white" data-th-text="'Latitude : '+${wModel.getLatitude}"></li>
+                             -->
+                        
                         </ul>
                     </div>
                     
@@ -39,11 +47,11 @@
             <p class="text-end"><a href="/">Go back</a></p>
            
         </div>
-        <div class="row" data-th-if="${!hasKey}">
-            <div class="col">
-                <p>No cahce found, current request will be cached with timestamp</p>
-
-            </div>
+         <div class="row" data-th-if="!${hasKey}">
+                <p data-th-text="'No cahce found, current request will be cached with timestamp '+${timeStamp}"></p>
+        </div>
+        <div class="row" data-th-if="${hasKey}">
+            <p data-th-text="'cache found with timestamp of ' + ${timeStamp}"></p>
         </div>
     </div>       
     

@@ -1,11 +1,24 @@
 package SSF.weather;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import java.nio.charset.StandardCharsets;
 //import java.sql.Time;
 import java.util.Date;
-import java.util.logging.Level;
+
 import java.util.logging.Logger;
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.web.client.RestTemplate;
+
+
+
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonReader;
 
 
 
@@ -21,7 +34,7 @@ public class Constants {
 
         return URL;
     }
-    public String getTimeStamp(){
+    public static String getTimeStamp(){
         
         long time = new Date().getTime();
         java.sql.Timestamp ts = new java.sql.Timestamp(time);
@@ -29,8 +42,19 @@ public class Constants {
         return Ts;
     }
 
-    public static void main(String[] args) {
-        logger.log(Level.INFO,"Value from env>>>%s".formatted(APIKey));
+    public static void main(String[] args) throws IOException {
+        //logger.log(Level.INFO,"Value from env>>>%s".formatted(APIKey));
+        String s= "{\"cityName\":\"China\",\"main\":\"Clouds\",\"icon\":\"04n\",\"description\":\"overcast clouds\",\"temperature\":\"10.71\",\"timeStamp\":\"2022-01-16 16:09:46\",\"lon\":\"-99.2333\",\"lat\":\"25.7\"}";
+        System.out.println(s);
+        //String t = s.replace("\"", "'");
+        //System.out.println( t);
+        try( InputStream is = new ByteArrayInputStream(s.getBytes(StandardCharsets.UTF_8))) {
+            JsonReader reader = Json.createReader(is);
+            JsonObject data = reader.readObject();
+            System.out.println(">>>%s".formatted(data));
+            is.close();
+        }
+        
         /* cityNameBuilder cName =new cityNameBuilder("hong kong");
                                         //.withCountryCode("123")
                                         //.withStateCode("statecode");
