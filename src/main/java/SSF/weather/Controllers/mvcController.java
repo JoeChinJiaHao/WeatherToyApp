@@ -49,7 +49,7 @@ public class mvcController {
     @Autowired
     private cachingService cachingSVC;
     
-    @GetMapping("/find/{nameid}")
+    @GetMapping("/weather/{nameid}")
     public String queryName(@PathVariable String nameid, Model model){
         
         URLBuilderCustom url1=new URLBuilderCustom(Constants.BaseURL, nameid, Constants.APIKey);
