@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -20,6 +20,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,6 +48,62 @@ public class mvcController {
 
     @Autowired
     private cachingService cachingSVC;
+    
+    @GetMapping("/find/{nameid}")
+    public String queryName(@PathVariable String nameid, Model model){
+        
+        URLBuilderCustom url1=new URLBuilderCustom(Constants.BaseURL, nameid, Constants.APIKey);
+        Optional<List<weatherModel>> opt = cachingSVC.get(url1.getQueryString());
+        List<weatherModel> list = new ArrayList<weatherModel>();
+        RequestEntity<Void> req = RequestEntity
+                                        .get(url1.getURI())
+                                        .accept(MediaType.APPLICATION_JSON)
+                                        .build();
+        if(opt.isPresent()){
+
+            List<JsonObject> result = new ArrayList<JsonObject>();
+            for(weatherModel wwwm:opt.get()){
+                result.add(wwwm.toJson());
+            }
+            model.addAttribute("json", result);
+        }else{
+            try{
+                RestTemplate template = new RestTemplate();
+                ResponseEntity<String> resp=template.exchange(req, String.class);
+                try(InputStream is = new ByteArrayInputStream(resp.getBody().getBytes(StandardCharsets.UTF_8))){
+                    JsonReader reader = Json.createReader(new BufferedReader(new InputStreamReader(is,StandardCharsets.UTF_8)));
+                    JsonObject data = reader.readObject();
+                    JsonArray weatherFromWeb=data.getJsonArray("weather");
+                    String Temp = data.getJsonObject("main").get("temp").toString();
+                    String timeStamp = Constants.getTimeStamp();
+                    String longitude = data.getJsonObject("coord").get("lon").toString();
+                    String Latitude = data.getJsonObject("coord").get("lat").toString();
+                    model.addAttribute("timeStamp", timeStamp);
+                    for(JsonValue j:weatherFromWeb){
+                        list.add(weatherModel.create(j.asJsonObject(), Temp,"metric",nameid,timeStamp,longitude,Latitude));
+                    }
+
+                    
+                    //save to caching
+                    cachingSVC.save(list, url1.getQueryString());
+                    List<JsonObject> result = new ArrayList<JsonObject>();
+                    for(weatherModel wwwm:list){
+                        result.add(wwwm.toJson());
+                    }
+                    model.addAttribute("json", result);
+                }catch(Exception e){
+                    logger.log(Level.INFO,">>>%s".formatted(e));
+                    model.addAttribute("errorMessage", e.getMessage());
+                    return "error";
+                }
+            }finally{}
+        }
+
+
+        return "name";
+    }
+
+
 
     @PostMapping("/weather")
     public String displayWaether(@RequestBody MultiValueMap<String,String> form, Model model){
@@ -74,9 +132,11 @@ public class mvcController {
         Optional<List<weatherModel>> opt = cachingSVC.get(urlB.getQueryString());
         //logger.log(Level.INFO, "t1>>>>%s".formatted(opt.empty()));
         
-        
+        //the weatherlist is currently null maybe can use collections.emplylist to make it an empty list
+        //null list maight result in a null pointer exception 
+        //testing results have shown that the collection.emptylist has error
         List<weatherModel> list = new ArrayList<weatherModel>();
-        
+        //List<weatherModel> list = Collections.emptyList();
         if(opt.isPresent()){
             for(weatherModel twm:opt.get()){
             logger.log(Level.INFO, ">>>%s".formatted(twm.toJson()));

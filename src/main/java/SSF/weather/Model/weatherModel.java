@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import SSF.weather.WeatherApplication;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
+//can try with serialiser to see if app can be improved
 
 public class weatherModel {
     private final Logger logger = Logger.getLogger(WeatherApplication.class.getName());
@@ -114,7 +115,7 @@ public class weatherModel {
                         .add("lat",lat)
                         .add("units",units)
                         .build();
-        //logger.log(Level.INFO, "building Json>>>>%s".formatted(jack));
+        logger.log(Level.INFO, "building Json>>>>%s".formatted(jack));
 
         return jack;
     }
