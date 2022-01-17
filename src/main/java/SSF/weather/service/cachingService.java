@@ -1,9 +1,8 @@
 package SSF.weather.service;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.logging.Logger;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.auditing.IsNewAwareAuditingHandler;
+
 import org.springframework.stereotype.Service;
 
 import SSF.weather.WeatherApplication;
@@ -27,7 +26,7 @@ import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
-import jakarta.json.JsonValue;
+
 
 
 @Service

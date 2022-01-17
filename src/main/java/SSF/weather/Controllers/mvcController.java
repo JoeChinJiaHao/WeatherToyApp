@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -20,8 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,14 +41,14 @@ import jakarta.json.JsonReader;
 import jakarta.json.JsonValue;
 
 @Controller
-@RequestMapping(produces = MediaType.TEXT_HTML_VALUE)
+@RequestMapping( produces = MediaType.TEXT_HTML_VALUE )
 public class mvcController {
     private static final Logger logger = Logger.getLogger(mvcController.class.getName());
 
     @Autowired
     private cachingService cachingSVC;
     
-    @GetMapping("/weather/{nameid}")
+    /* @GetMapping(path ="/weather/{nameid}")
     public String queryName(@PathVariable String nameid, Model model){
         
         URLBuilderCustom url1=new URLBuilderCustom(Constants.BaseURL, nameid, Constants.APIKey);
@@ -101,7 +100,7 @@ public class mvcController {
 
 
         return "name";
-    }
+    } */
 
 
 
